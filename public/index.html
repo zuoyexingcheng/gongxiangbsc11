@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>bsc大事记</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">BSC Timeline</p>
+        <h1 id="page-title">bsc大事记</h1>
+        <p class="subtitle">记录bsc和战壕里发生的一切</p>
+      </section>
+
+      <section class="composer" aria-labelledby="compose-title">
+        <h2 id="compose-title">写一条大事记</h2>
+        <form id="post-form" novalidate>
+          <label>
+            昵称
+            <input
+              id="nickname"
+              name="nickname"
+              maxlength="20"
+              placeholder="例如：小林"
+              autocomplete="nickname"
+              required
+            />
+          </label>
+
+          <label>
+            内容
+            <textarea
+              id="content"
+              name="content"
+              maxlength="500"
+              placeholder="记录一件和 BSC 有关的重要事情"
+              rows="5"
+              required
+            ></textarea>
+          </label>
+
+          <div class="form-row">
+            <span id="content-count">0 / 500</span>
+            <button type="submit">发布</button>
+          </div>
+          <p id="form-message" class="message" role="status"></p>
+        </form>
+      </section>
+
+      <section class="feed" aria-labelledby="feed-title">
+        <div class="feed-header">
+          <h2 id="feed-title">BSC 大事记</h2>
+          <button id="refresh-button" type="button" class="ghost">刷新</button>
+        </div>
+        <div id="posts" class="posts" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
