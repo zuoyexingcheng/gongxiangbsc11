@@ -1,7 +1,7 @@
 {
-  "name": "shared-life-notes",
+  "name": "jingou-reviews",
   "version": "1.0.0",
-  "description": "A simple shared life notes web app with admin deletion.",
+  "description": "A simple meme coin review web app with admin deletion.",
   "main": "server.js",
   "type": "module",
   "scripts": {
