@@ -89,6 +89,3 @@ data/life-notes.sqlite
 | `NODE_ENV` | 生产环境设置为 `production` |
 | `ADMIN_PASSWORD` | 管理员删除点评时使用的密码 |
 | `DATA_DIR` | 可选，SQLite 数据保存目录 |
-# bsc大事记网页
-
-这是一个本机可运行的 bsc 大事记原型，支持发布、查看、刷新后保留记录，以及管理员密码删帖。
