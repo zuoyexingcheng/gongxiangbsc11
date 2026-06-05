@@ -3,39 +3,102 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>bsc大事记</title>
+    <title>金狗点评</title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <main class="shell">
       <section class="intro" aria-labelledby="page-title">
-        <p class="eyebrow">BSC Timeline</p>
-        <h1 id="page-title">bsc大事记</h1>
-        <p class="subtitle">记录bsc和战壕里发生的一切</p>
+        <p class="eyebrow">Meme Coin Review</p>
+        <h1 id="page-title">金狗点评</h1>
+        <p class="slogan">让市场有记忆，让作恶有代价。</p>
+        <p class="subtitle">
+          记录金狗、土狗、黑盘和项目方口碑。每一条点评，都是给后来者的一盏灯。
+        </p>
       </section>
 
       <section class="composer" aria-labelledby="compose-title">
-        <h2 id="compose-title">写一条大事记</h2>
+        <h2 id="compose-title">写一条 meme 币点评</h2>
         <form id="post-form" novalidate>
-          <label>
-            昵称
-            <input
-              id="nickname"
-              name="nickname"
-              maxlength="20"
-              placeholder="例如：小林"
-              autocomplete="nickname"
-              required
-            />
-          </label>
+          <div class="field-grid">
+            <label>
+              币名 / 代码
+              <input
+                id="coin-name"
+                name="coinName"
+                maxlength="40"
+                placeholder="例如：DOGE、PEPE、某金狗"
+                autocomplete="off"
+                required
+              />
+            </label>
+
+            <label>
+              昵称
+              <input
+                id="nickname"
+                name="nickname"
+                maxlength="20"
+                placeholder="例如：链上观察员"
+                autocomplete="nickname"
+                required
+              />
+            </label>
+          </div>
+
+          <div class="choice-grid">
+            <fieldset class="rating-field">
+              <legend>评分</legend>
+              <div class="rating-options" role="radiogroup" aria-label="评分">
+                <label class="rating-option">
+                  <input type="radio" name="rating" value="1" />
+                  <span>1 分</span>
+                </label>
+                <label class="rating-option">
+                  <input type="radio" name="rating" value="2" />
+                  <span>2 分</span>
+                </label>
+                <label class="rating-option">
+                  <input type="radio" name="rating" value="3" />
+                  <span>3 分</span>
+                </label>
+                <label class="rating-option">
+                  <input type="radio" name="rating" value="4" />
+                  <span>4 分</span>
+                </label>
+                <label class="rating-option">
+                  <input type="radio" name="rating" value="5" />
+                  <span>5 分</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset class="tag-field">
+              <legend>点评标签</legend>
+              <div class="tag-options" role="radiogroup" aria-label="点评标签">
+                <label class="tag-option good">
+                  <input type="radio" name="tag" value="good" />
+                  <span>金狗推荐</span>
+                </label>
+                <label class="tag-option neutral">
+                  <input type="radio" name="tag" value="neutral" checked />
+                  <span>中立观察</span>
+                </label>
+                <label class="tag-option warning">
+                  <input type="radio" name="tag" value="warning" />
+                  <span>避雷警告</span>
+                </label>
+              </div>
+            </fieldset>
+          </div>
 
           <label>
-            内容
+            点评内容
             <textarea
               id="content"
               name="content"
               maxlength="500"
-              placeholder="记录一件和 BSC 有关的重要事情"
+              placeholder="说清楚你为什么看好、避雷，或者这个项目做过什么。"
               rows="5"
               required
             ></textarea>
@@ -43,17 +106,66 @@
 
           <div class="form-row">
             <span id="content-count">0 / 500</span>
-            <button type="submit">发布</button>
+            <button type="submit">发布点评</button>
           </div>
           <p id="form-message" class="message" role="status"></p>
         </form>
       </section>
 
+      <section class="project-board" aria-labelledby="project-title">
+        <div class="feed-header">
+          <div>
+            <p class="section-kicker">Project Pulse</p>
+            <h2 id="project-title">项目口碑榜</h2>
+          </div>
+        </div>
+        <div id="projects" class="projects" aria-live="polite"></div>
+      </section>
+
       <section class="feed" aria-labelledby="feed-title">
         <div class="feed-header">
-          <h2 id="feed-title">BSC 大事记</h2>
+          <div>
+            <p class="section-kicker">Market Memory</p>
+            <h2 id="feed-title">最新点评</h2>
+          </div>
           <button id="refresh-button" type="button" class="ghost">刷新</button>
         </div>
+
+        <form id="filter-form" class="filters" aria-label="筛选点评">
+          <label>
+            搜索
+            <input id="search-input" name="search" placeholder="搜币名、昵称或点评内容" />
+          </label>
+          <label>
+            评分
+            <select id="rating-filter" name="rating">
+              <option value="">全部评分</option>
+              <option value="5">5 分</option>
+              <option value="4">4 分</option>
+              <option value="3">3 分</option>
+              <option value="2">2 分</option>
+              <option value="1">1 分</option>
+            </select>
+          </label>
+          <label>
+            标签
+            <select id="tag-filter" name="tag">
+              <option value="">全部标签</option>
+              <option value="good">金狗推荐</option>
+              <option value="neutral">中立观察</option>
+              <option value="warning">避雷警告</option>
+            </select>
+          </label>
+          <label>
+            排序
+            <select id="sort-select" name="sort">
+              <option value="latest">最新发布</option>
+              <option value="rating_desc">评分最高</option>
+              <option value="rating_asc">评分最低</option>
+            </select>
+          </label>
+        </form>
+
         <div id="posts" class="posts" aria-live="polite"></div>
       </section>
     </main>
