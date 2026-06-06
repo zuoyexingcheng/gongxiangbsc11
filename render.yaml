@@ -2,7 +2,7 @@ services:
   - type: web
     name: bsc-timeline
     runtime: node
-    plan: free
+    plan: starter
     buildCommand: npm install
     startCommand: npm start
     healthCheckPath: /health
@@ -12,3 +12,15 @@ services:
         value: production
       - key: ADMIN_PASSWORD
         value: admin123
+      - key: DATABASE_URL
+        fromDatabase:
+          name: jingou-postgres
+          property: connectionString
+
+databases:
+  - name: jingou-postgres
+    databaseName: jingou_reviews
+    user: jingou_reviews_user
+    plan: basic-256mb
+    postgresMajorVersion: "16"
+    ipAllowList: []
